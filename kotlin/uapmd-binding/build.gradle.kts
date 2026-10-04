@@ -68,6 +68,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.oboe)
             implementation(libs.androidaudioplugin)
+            implementation(libs.androidaudioplugin.ara)
             implementation(files(repoRoot.resolve("external/uapmd/android/external/SDL3-3.4.0.aar")))
         }
         jsMain.dependencies {

@@ -28,7 +28,6 @@ if(ANDROID_ABI STREQUAL "armeabi-v7a")
 endif()
 
 include("${UAPMD_KMP_CMAKE_DIR}/UapmdFeatureOptions.cmake")
-include("${UAPMD_KMP_CMAKE_DIR}/UapmdPatches.cmake")
 
 find_package(SDL3 REQUIRED CONFIG)
 

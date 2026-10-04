@@ -4,3 +4,6 @@
 [submodule "external/aap-core"]
 	path = external/aap-core
 	url = https://github.com/atsushieno/aap-core.git
+[submodule "external/aap-ara"]
+	path = external/aap-ara
+	url = https://github.com/atsushieno/aap-ara.git

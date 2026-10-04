@@ -314,25 +314,11 @@ Note for future debugging: the worklet's fetches do **not** appear in the page's
 network log, because a worker issues them. `performance.getEntriesByType('resource')`
 does show them, and an empty page-level log means nothing here.
 
-### 2.10 uapmd changes not yet upstream: `patches/uapmd/`
+### 2.10 Local uapmd patches: none
 
-The embedder hooks uapmd-cmp once needed (`setRemoteScannerExecutable`, the
-Emscripten main-thread check, the `coop-coep-sw.js` guard) are all in uapmd now, and
-the old best-effort Gradle patch task that carried them is gone.
-
-What replaced it is `cmake/UapmdPatches.cmake`: every `patches/uapmd/*.patch` is
-applied to the submodule at CMake configure time by all three entry points (desktop,
-Android, Emscripten), idempotently, and a patch that no longer applies fails configure
-instead of silently dropping the change. Each patch is a holding area for a change
-that is meant to go upstream; once uapmd carries it, deleting the file is the whole
-removal.
-
-Currently carried:
-
-- `0001-augene2-public-integration-model.patch` — makes `uapmd_augene2::Integration`
-  a public model (sources, track mappings, status, diagnostics, busy/compiling,
-  import/relink/remove/compile, panel visibility) with the ImGui panel as one view
-  of it. uapmd-cmp's Augene2 window is the other view (§2.11).
+uapmd-kmp no longer patches `external/uapmd`. The last carried change (the public
+`uapmd_augene2::Integration` model) is upstream, so `cmake/UapmdPatches.cmake` and
+`patches/uapmd/` are gone. Changes uapmd-kmp needs go upstream directly.
 
 ### 2.11 Addin wiring (uapmd `f5d490d5`)
 

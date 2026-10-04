@@ -78,7 +78,7 @@ Bound in this bump: audio workers (count, configure, stop-on-deadline, fault, re
 wait), the two dropped-event counters, `kNoDeviceIndex`, the Virtual MIDI Devices addin
 and its `AppModel` members, the project-command and panel registries, `/uapmd/app/model/v1`,
 `uapmd-augene2` (project service and the `Integration` model from
-`patches/uapmd/0001-*`), and the pre-existing `midiApiSupportsDynamicUmpEndpoints()`.
+upstream `uapmd-augene2.hpp`), and the pre-existing `midiApiSupportsDynamicUmpEndpoints()`.
 
 Not bound, deliberately or for now:
 

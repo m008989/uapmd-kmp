@@ -24,7 +24,7 @@ The Gradle project lives under the `kotlin/` subdirectory. All `./gradlew` comma
 | All | JDK 17 (Temurin recommended) |
 | macOS | Xcode command-line tools, `brew install sdl3 ninja` |
 | Linux | `gcc-14 ninja-build libgtk-3-dev libwebkit2gtk-4.1-dev libadwaita-1-dev libsdl2-dev` |
-| Android | macOS host with Android NDK; publish `aap-core` to Maven Local first (see below) |
+| Android | macOS host with Android NDK; publish `aap-core` and `aap-ara` to Maven Local first (see below) |
 | Wasm | Emscripten SDK (installed separately) |
 
 Submodules must be checked out recursively:
@@ -35,11 +35,16 @@ git clone --recursive https://github.com/atsushieno/uapmd-kmp
 
 ### Android
 
-Publish the AAP framework dependency to Maven Local before the main build:
+Publish the AAP framework dependencies to Maven Local before the main build. The ARA
+backend of uapmd also needs `androidaudioplugin-ara` from the `external/aap-ara`
+submodule ([aap-ara](https://github.com/atsushieno/aap-ara), which builds against the
+sibling `external/aap-core`):
 
 ```sh
 cd external/aap-core
 ./gradlew :androidaudioplugin:publishToMavenLocal
+cd ../aap-ara
+./gradlew :androidaudioplugin-ara:publishToMavenLocal
 cd ../../kotlin
 ./gradlew assembleDebug
 ```

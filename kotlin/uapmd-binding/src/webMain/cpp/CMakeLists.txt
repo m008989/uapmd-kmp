@@ -39,7 +39,6 @@ set(MIDICCI_SKIP_TOOLS ON  CACHE BOOL "" FORCE)
 get_filename_component(UAPMD_KMP_CMAKE_DIR
     "${CMAKE_CURRENT_SOURCE_DIR}/../../../../../cmake" ABSOLUTE)
 include("${UAPMD_KMP_CMAKE_DIR}/UapmdFeatureOptions.cmake")
-include("${UAPMD_KMP_CMAKE_DIR}/UapmdPatches.cmake")
 add_compile_options(-pthread -matomics -mbulk-memory)
 
 # Pull in the full uapmd source tree, then our owned C API wrapper.

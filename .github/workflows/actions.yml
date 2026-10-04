@@ -123,6 +123,12 @@ jobs:
       working-directory: external/aap-core
       run: ./gradlew :androidaudioplugin:publishToMavenLocal
 
+    # aap-ara resolves ../aap-core as an included build, so it follows aap-core.
+    - name: publish aap-ara to Maven Local
+      if: matrix.name == 'android'
+      working-directory: external/aap-ara
+      run: ./gradlew :androidaudioplugin-ara:publishToMavenLocal
+
     - name: bump Android versionCode
       if: matrix.name == 'android'
       uses: chkfung/android-version-actions@v1.2.1

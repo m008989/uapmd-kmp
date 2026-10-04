@@ -14,11 +14,6 @@ set(UAPMD_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/uapmd/source"
 # entry of that name exists.
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/UapmdFeatureOptions.cmake")
 
-# uapmd changes uapmd-kmp needs but uapmd does not carry yet. Applied to the
-# submodule's working tree before it is built; see cmake/UapmdPatches.cmake.
-set(UAPMD_KMP_UAPMD_SOURCE_DIR "${UAPMD_SOURCE_DIR}")
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/UapmdPatches.cmake")
-
 # Build the uapmd engine libraries from the submodule.
 # uapmd-c-api is NOT included here; we use our own copy in c-api/.
 add_subdirectory("${UAPMD_SOURCE_DIR}" uapmd-source)

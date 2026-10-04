@@ -40,6 +40,7 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidaudioplugin)
+            implementation(libs.androidaudioplugin.ara)
             implementation(libs.androidx.startup)
         }
         commonMain.dependencies {
