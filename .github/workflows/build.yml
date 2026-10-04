@@ -28,6 +28,11 @@ jobs:
         with:
           ndk-version: r25c
 
+      - name: Configure JitPack Auth
+        run: |
+          mkdir -p ~/.gradle
+          echo "authToken=${{ secrets.JITPACK_AUTH_TOKEN }}" >> ~/.gradle/gradle.properties
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
