@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-android:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: Checkout code
@@ -28,16 +28,33 @@ jobs:
         with:
           ndk-version: r25c
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-14 ninja-build libgtk-3-dev libwebkit2gtk-4.1-dev libadwaita-1-dev libsdl2-dev
 
-      - name: Build debug APK
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
+      - name: Publish aap-core to Maven Local
+        working-directory: external/aap-core
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :androidaudioplugin:publishToMavenLocal
+
+      - name: Publish aap-ara to Maven Local
+        working-directory: external/aap-ara
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :androidaudioplugin-ara:publishToMavenLocal
+
+      - name: Build Android APK
+        working-directory: kotlin
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :uapmd-cmp:assembleDebug
 
       - name: Upload APK
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: uapmd-debug-apk
-          path: '**/build/outputs/apk/debug/*.apk'
+          name: uapmd-android-apk
+          path: kotlin/uapmd-cmp/build/outputs/apk/debug/*.apk
           if-no-files-found: warn
